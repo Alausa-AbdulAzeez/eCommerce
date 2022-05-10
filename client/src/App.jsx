@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/home/Home";
 import Product from "./pages/product/Product";
+import Cart from "./pages/cart/Cart";
 
 export const client = new ApolloClient({
   uri: "http://localhost:4000/",
@@ -12,7 +13,6 @@ export const client = new ApolloClient({
 
 function App() {
   return (
-    // <div className="App">hello</div>
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Routes>

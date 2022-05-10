@@ -21,6 +21,20 @@ const Navbar = () => {
               <img src={require("../../icons/angle-down.png")} alt="" />
             </div>
           </div>
+          <div className="navRightList">
+            <li className="currencyList">
+              <div className="">$ USD</div>
+            </li>
+            <li className="currencyList">
+              <div className="">$ USD</div>
+            </li>
+            <li className="currencyList">
+              <div className="">$ USD</div>
+            </li>
+            <li className="currencyList">
+              <div className="">USD $</div>
+            </li>
+          </div>
           <div className="cartIconContainer">
             <img src={require("../../icons/Vector.png")} alt="" />
             <div className="cartIconBadge">3</div>

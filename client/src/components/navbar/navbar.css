@@ -8,8 +8,7 @@
   margin: 0px 100px;
   display: flex;
   justify-content: space-between;
-    font-family: "Raleway",
-    sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .navLeft {
@@ -48,19 +47,17 @@
   display: flex;
   cursor: pointer;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   width: 80px;
 }
 
-.currency{
+.currency {
   display: flex;
-
 }
 .symbol {
   font-size: large;
   margin-right: 8px;
   font-weight: 500;
-
 }
 
 .currency:hover .angleIcon {
@@ -77,11 +74,9 @@
   position: absolute;
   top: 51px;
   background-color: white;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.08);
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.08);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.08);
-  width: 80px;
-  right: 100px;
+  box-shadow: 0px 4px 35px 0px #a8acb030;
+  width: 114px;
+  right: 78px;
   visibility: hidden;
   z-index: 100;
 }
@@ -96,14 +91,19 @@
   padding-right: 100px;
 }
 .currencyList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Raleway", sans-serif;
   list-style-type: none;
-  text-align: center;
-  font-weight: 300;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 18px;
   line-height: 29px;
+  color: #1d1f22;
+  height: 45px;
 }
 .currencyList:hover {
-  background-color: #25d36528;
+  background-color: #eeeeee;
 }
 .cartIconContainer {
   position: relative;
@@ -322,3 +322,4 @@
   justify-content: center;
   height: 50px;
 }
+
