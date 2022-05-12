@@ -22,7 +22,7 @@ const GetProduct = () => {
       }
     }
     checkArr();
-  }, [attributesArray]);
+  }, [attributesArray, productAtt]);
 
   const GET_PRODUCT = gql`
     query getId {
@@ -58,16 +58,8 @@ const GetProduct = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  const {
-    attributes,
-    brand,
-    category,
-    description,
-    gallery,
-    id,
-    name,
-    prices,
-  } = data.product;
+  const { attributes, brand, description, gallery, name, prices } =
+    data.product;
   //   setProduct(data.product);
   //   console.log(product);
 
@@ -117,7 +109,6 @@ const GetProduct = () => {
       addAttribute(e, attributeType);
     }
   };
-  console.log(attributesArray);
 
   return (
     <div>

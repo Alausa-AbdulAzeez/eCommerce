@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setCategory } from "../../redux/categorySlice";
 
-const GET_CAT = gql`
+export const GET_CAT = gql`
   query getCategory {
     categories {
       name
@@ -21,6 +21,7 @@ const GetCat = () => {
 
   const setCategor = (e) => {
     dispatch(setCategory(`${e.target.innerHTML.toLowerCase()}`));
+    console.log(document.body.scrollHeight);
   };
   const { loading, error, data } = useQuery(GET_CAT);
 

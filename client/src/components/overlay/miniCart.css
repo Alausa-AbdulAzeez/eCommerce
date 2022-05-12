@@ -1,0 +1,263 @@
+/* .cartIconContainer[showminicart="true"] .miniCartWrapper .cartOverlay {
+  visibility: visible;
+} */
+
+.miniCartWrapper {
+  height: 1435px;
+}
+
+.cartOverlay {
+  background: #39374838;
+  width: 100%;
+  visibility: hidden;
+  position: absolute;
+  top: 80px;
+  z-index: 4;
+  left: 0px;
+}
+
+.miniCart {
+  width: 325px;
+  background-color: white;
+  position: absolute;
+  top: 80px;
+  right: 72px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  min-height: 40vh;
+  max-height: 80vh;
+  overflow-y: auto;
+  justify-content: space-between;
+  z-index: 5;
+}
+/* width */
+.miniCart::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.miniCart::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+.miniCart::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.466);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.miniCart::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.555);
+}
+
+.miniCartTitle {
+  font-weight: bold;
+  margin: 22px 0 16px 0;
+}
+.miniCartProductTitle {
+  width: 70%;
+  text-align: left;
+}
+.miniCartTitle span {
+  font-weight: lighter;
+}
+.miniCartContent {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  height: 190px;
+}
+
+.miniProductName {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #1d1f22;
+}
+.miniContentLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.miniCartProductPrice {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  color: #1d1f22;
+  height: 26px;
+  margin: 8px 0;
+  font-weight: 500;
+}
+.miniCartProductSizes {
+  display: flex;
+  align-items: center;
+}
+
+.miniAttributeTitle {
+  text-transform: capitalize;
+  font-family: "Raleway", sans-serif;
+  color: #1d1f22;
+  height: 16px;
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 14px;
+}
+.miniCartProductSize {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Source Sans Pro";
+  height: 24px;
+  width: 24px;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid #1d1f22;
+  margin-right: 8px;
+}
+.miniCartAttributesWrapper {
+  display: flex;
+  /* padding: 7px; */
+}
+.miniCartColorText {
+  font-family: "Raleway", sans-serif;
+  color: #1d1f22;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 8px 0;
+}
+.miniCartColorsContainer {
+  display: flex;
+}
+.miniCartSelectedColorContainer {
+  display: flex;
+}
+.miniCartProductDisplayColor {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin: 2px;
+  margin-right: 8px;
+}
+.miniCartAdd,
+.miniCartRemove,
+.miniCartQuantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10px;
+  width: 10px;
+  padding: 7px;
+  margin-right: 15px;
+  border: 1px solid black;
+  font-size: 25px;
+}
+.miniCartQuantity {
+  border: none;
+  font-size: medium;
+}
+.miniVariationSet {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+  margin-right: 8px;
+  background-color: #fff;
+}
+.miniContentRight {
+  display: flex;
+  width: 153px;
+  height: 100%;
+}
+.miniCartImage {
+  width: 120px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+}
+.miniCurrentImage {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+}
+.miniVariationAdd,
+.miniVariationRemove,
+.miniVariationQuantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  border: 1px solid #1d1f22;
+  font-size: 25px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 100;
+}
+
+.miniVariationQuantity {
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+}
+.miniCartTotal {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.miniCartButtons {
+  display: flex;
+}
+.viewBag,
+.checkOut {
+  width: 40%;
+  flex: 1;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: center;
+  cursor: pointer;
+}
+.viewBag {
+  border: 1px solid black;
+  margin-right: 5px;
+}
+.checkOut {
+  background-color: #25d366;
+  margin-left: 5px;
+  color: white;
+}
+.checkOut:hover {
+  color: black;
+}
+.viewBag:hover {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+}
+.miniProductDisplayColor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px 0px #454647fb;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.attributeTitle {
+  font-size: xx-small;
+}
+.attributesWrapper {
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 50px;
+}

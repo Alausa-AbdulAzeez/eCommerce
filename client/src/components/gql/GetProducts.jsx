@@ -38,7 +38,6 @@ const GetProducts = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  console.log(data.category);
 
   return data.category.products.map((product) => {
     const { inStock, id, gallery, prices, name } = product;

@@ -4,6 +4,7 @@
   text-decoration: none;
 }
 .navbarContainer {
+  color: #1d1f22;
   height: 80px;
   margin: 0px 100px;
   display: flex;
@@ -81,7 +82,7 @@
   z-index: 100;
 }
 
-.navRight:hover .navRightList {
+.currency:hover .navRightList {
   transition: all 0.3s ease-in-out;
   visibility: visible;
 }
@@ -109,9 +110,7 @@
   position: relative;
   cursor: pointer;
 }
-.cartIconContainer[showminicart="true"] .miniCartWrapper .cartOverlay {
-  visibility: visible;
-}
+
 .cartIcon {
   margin-left: 12px;
   font-size: 20px;
@@ -134,89 +133,11 @@
   padding: 1px;
   color: #fff;
 }
-.cartOverlay {
-  background-color: rgba(128, 128, 128, 0.301);
-  width: 100vw;
-  height: calc(100vh - 80px);
-  visibility: hidden;
-  position: absolute;
-  top: 50px;
-  z-index: 4;
-  right: -100px;
-}
-.miniCart {
-  width: 425px;
-  background-color: white;
-  position: absolute;
-  top: 50px;
-  right: 00px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  min-height: 40vh;
-  max-height: 70vh;
-  overflow-y: scroll;
-  justify-content: space-between;
-  z-index: 5;
-}
-/* width */
-.miniCart::-webkit-scrollbar {
-  width: 10px;
-}
 
-/* Track */
-.miniCart::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-/* Handle */
-.miniCart::-webkit-scrollbar-thumb {
-  background: rgba(136, 136, 136, 0.466);
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-.miniCart::-webkit-scrollbar-thumb:hover {
-  background: rgba(85, 85, 85, 0.555);
-}
-
-.miniCartTitle {
-  font-weight: bold;
-  margin-bottom: 30px;
-}
-.miniCartProductTitle {
-  width: 70%;
-  text-align: left;
-}
-.miniCartTitle span {
-  font-weight: lighter;
-}
-.miniCartContent {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
 .contentLeft {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-.miniCartProductPrice {
-  margin: 5px 0;
-  font-weight: bold;
-}
-.miniCartProductSizes {
-  display: flex;
-  align-items: center;
-}
-.miniCartProductSize {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px;
-  margin-right: 5px;
-  border: 1px solid black;
 }
 .contentRight {
   display: flex;
