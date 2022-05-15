@@ -10,6 +10,7 @@ const Navbar = () => {
   });
 
   const cartIconRef = useRef();
+  const navRef = useRef();
   const [navProperties, setNavProperties] = useState({
     overlayHeight: null,
     clicked: false,
@@ -17,12 +18,10 @@ const Navbar = () => {
 
   useEffect(() => {
     setNavProperties({
-      overlayHeight:
-        cartIconRef.current.parentElement.parentElement.parentElement
-          .nextElementSibling.clientHeight,
+      overlayHeight: window.document.body.offsetHeight,
       clicked: navProperties.clicked,
     });
-  }, [count, navProperties.clicked]);
+  }, [count, navProperties.clicked, navProperties.overlayHeight]);
 
   const showMiniCart = (e) => {
     setNavProperties({
@@ -35,7 +34,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbarContainer">
+      <div className="navbarContainer" ref={navRef}>
         <div className="navLeft">
           <MiniCart
             navProperties={navProperties}

@@ -4,6 +4,7 @@
 
 .miniCartWrapper {
   height: 1435px;
+  overflow: hidden;
 }
 
 .cartOverlay {

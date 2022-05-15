@@ -1,0 +1,123 @@
+.variationContainer {
+  width: 100%;
+  height: 100vh;
+  background: #39374838;
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s ease-in-out;
+}
+
+.variationContentContainer {
+  overflow-y: auto;
+  width: 35%;
+  max-height: 70vh;
+  background-color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.containerTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.variationTitle {
+  margin-bottom: 10px;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.addVariation:disabled {
+  cursor: not-allowed;
+  background-color: #25d3655b;
+}
+
+.addVariation {
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #25d366;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.closeIcon {
+  cursor: pointer;
+  color: #d32533;
+}
+
+/* width */
+.variationContentContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.variationContentContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+.variationContentContainer::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.466);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.variationContentContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.555);
+}
+
+.varBottom {
+  margin-bottom: 30px;
+}
+
+.varProductName {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #1d1f22;
+}
+.varAttributeTitle {
+  text-transform: capitalize;
+  font-family: "Raleway", sans-serif;
+  color: #1d1f22;
+  height: 16px;
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 14px;
+}
+.varCartAttributesWrapper {
+  display: flex;
+  /* padding: 7px; */
+}
+.varCartProductSize {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Source Sans Pro";
+  height: 24px;
+  width: 24px;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid #1d1f22;
+  margin-right: 8px;
+}
+.show {
+  visibility: visible;
+  z-index: 200;
+  opacity: 1;
+  /* bottom: 0;
+  top: 0;
+  min-height: 100%; */
+  transform: scale(1);
+}

@@ -21,7 +21,6 @@ const GetCat = () => {
 
   const setCategor = (e) => {
     dispatch(setCategory(`${e.target.innerHTML.toLowerCase()}`));
-    console.log(document.body.scrollHeight);
   };
   const { loading, error, data } = useQuery(GET_CAT);
 

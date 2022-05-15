@@ -11,7 +11,6 @@ const Category = () => {
   return (
     <div className="category">
       <div className="categoryTitle">{count.toUpperCase()}</div>
-
       <div className="categoryItems">
         <GetProducts />
       </div>

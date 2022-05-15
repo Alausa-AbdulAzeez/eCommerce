@@ -11,14 +11,16 @@ const MiniCart = ({ navProperties, setNavProperties }) => {
   useEffect(() => {
     setShow(clicked);
     if (overLayRef) {
-      overLayRef.current.style.height = `${overlayHeight + 80}px`;
+      overLayRef.current.style.height = "100%";
     }
     if (show) {
       overLayRef.current.style.visibility = `visible`;
       miniCartRef.current.style.visibility = `visible`;
+      document.body.style.overflowY = "hidden";
     } else {
       overLayRef.current.style.visibility = `hidden`;
       miniCartRef.current.style.visibility = `hidden`;
+      document.body.style.overflowY = "scroll";
     }
   }, [overlayHeight, show, clicked]);
 
