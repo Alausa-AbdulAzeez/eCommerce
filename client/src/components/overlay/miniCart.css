@@ -95,6 +95,13 @@
   display: flex;
   align-items: center;
 }
+.miniCartWhiteDisplayColor {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin: 2px;
+  box-shadow: 0px 0px 1px 0px #686869b9;
+}
 
 .miniAttributeTitle {
   text-transform: capitalize;
@@ -110,8 +117,8 @@
   align-items: center;
   justify-content: center;
   font-family: "Source Sans Pro";
-  height: 24px;
-  width: 24px;
+  height: 28px;
+  width: 28px;
   font-size: 14px;
   font-weight: 400;
   border: 1px solid #1d1f22;
@@ -135,6 +142,8 @@
   display: flex;
 }
 .miniCartSelectedColorContainer {
+  margin-right: 4px;
+
   display: flex;
 }
 .miniCartProductDisplayColor {
@@ -142,7 +151,6 @@
   height: 16px;
   cursor: pointer;
   margin: 2px;
-  margin-right: 8px;
 }
 .miniCartAdd,
 .miniCartRemove,

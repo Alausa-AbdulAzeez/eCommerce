@@ -2,27 +2,37 @@ import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import parse from "html-react-parser";
-import { Link } from "react-router-dom";
+import Variation from "../variation/Variation";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../redux/cartSlice";
 
 const GetProduct = () => {
+  const [clickedProduct, setClickedProduct] = useState(null);
+  const [varBtnDisabled, setVarBtnDisabled] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
-  const [attributesArray, setAttributesArray] = useState();
+  const [varAttributesArray, setVarAttributesArray] = useState();
   const [disabled, setDisabled] = useState(true);
   const [productAtt, setProductAtt] = useState();
   const productId = window.location.href.split("/")[3];
 
   const selectedColorRef = useRef();
+  const variationRef = useRef();
+  const cart = useSelector((state) => {
+    return state.cart.value;
+  });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     function checkArr() {
-      if (attributesArray && productAtt) {
-        if (attributes.length === Object.keys(attributesArray).length) {
+      if (varAttributesArray && productAtt) {
+        if (productAtt.length === Object.keys(varAttributesArray).length) {
           setDisabled(false);
         }
       }
     }
     checkArr();
-  }, [attributesArray, productAtt]);
+  }, [varAttributesArray, productAtt]);
+  console.log(productAtt);
 
   const GET_PRODUCT = gql`
     query getId {
@@ -58,10 +68,8 @@ const GetProduct = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  const { attributes, brand, description, gallery, name, prices } =
-    data.product;
-  //   setProduct(data.product);
-  //   console.log(product);
+  const { product } = data;
+  const { attributes, brand, description, gallery, name, prices, id } = product;
 
   const getImage = (smallImage) => {
     setImageIndex(gallery.indexOf(smallImage));
@@ -95,8 +103,9 @@ const GetProduct = () => {
   };
 
   const selectAttribute = (e, attributeType, attribute, attributes) => {
-    setAttributesArray({
-      ...attributesArray,
+    console.log(attributes);
+    setVarAttributesArray({
+      ...varAttributesArray,
       [attributeType]: attribute,
     });
     setProductAtt(attributes);
@@ -110,8 +119,47 @@ const GetProduct = () => {
     }
   };
 
+  const addProductToCart = (e, product) => {
+    if (product.attributes.length > 0) {
+      let idInCart =
+        Object.values(varAttributesArray).toString().split(",").join("") +
+        product.id;
+      let productInCart = {
+        ...product,
+        varAttributesArray,
+        idInCart: idInCart,
+      };
+      if (e.target.dataset.type === "setVar") {
+        variationRef.current.firstChild.style.top = `${window.scrollY}px`;
+        variationRef.current.firstChild.classList.add("show");
+        document.body.style.overflowY = "hidden";
+      }
+      if (e.target.dataset.type === "inc") {
+        dispatch(addToCart(productInCart));
+      }
+    } else {
+      if (e.target.dataset.type === "inc") {
+        dispatch(addToCart(product));
+      }
+      if (e.target.dataset.type === "dec") {
+        dispatch(removeFromCart(product));
+      }
+    }
+  };
+
+  const handleClickedProduct = (product) => {
+    setClickedProduct(product);
+    setTimeout(() => {
+      setVarBtnDisabled(false);
+    }, 1500);
+    setVarBtnDisabled(true);
+  };
+
   return (
     <div>
+      <div className="varWrapper" ref={variationRef}>
+        <Variation product={product} />
+      </div>
       <div className="productPageWrapper">
         <div className="productContainer">
           <div className="productContainerLeft">
@@ -230,13 +278,69 @@ const GetProduct = () => {
               <div className="productPrice1">PRICE:</div>
             </div>
             <div className="priceValue">${prices[0].amount}</div>
-            <div className="productBtn">
-              <Link to="/cart">
-                <button className="defaultAddToCart" disabled={disabled}>
-                  ADD TO CART
+            {cart.some((cartItem) => cartItem.id === id) === true && (
+              <span
+                className="setProdQuantity"
+                onClick={() => handleClickedProduct(product)}
+              >
+                <button
+                  className="catAddBtn"
+                  onClick={(e) => addProductToCart(e, product)}
+                  data-type={product.attributes.length > 0 ? "setVar" : "inc"}
+                  disabled={
+                    product.attributes.length > 0 ? null : varBtnDisabled
+                  }
+                >
+                  +
                 </button>
-              </Link>
-            </div>
+                {varBtnDisabled &&
+                clickedProduct === product &&
+                product.attributes.length === 0 ? (
+                  <div className="loader"></div>
+                ) : (
+                  <div className="catQuantity">
+                    {cart.length > 0 &&
+                      cart.filter((itemInCart) => itemInCart.id === product.id)
+                        .length}
+                  </div>
+                )}
+
+                <button
+                  className="catReduceBtn"
+                  onClick={(e) => addProductToCart(e, product)}
+                  data-type={product.attributes.length > 0 ? "setVar" : "dec"}
+                  disabled={
+                    product.attributes.length > 0 ? null : varBtnDisabled
+                  }
+                >
+                  -
+                </button>
+              </span>
+            )}
+            {cart.some((cartItem) => cartItem.id === id) === false && (
+              <div className="productBtn">
+                {product.attributes.length === 0 ? (
+                  <button
+                    className="defaultAddToCart"
+                    disabled={false}
+                    onClick={(e) => addProductToCart(e, product)}
+                    data-type={"inc"}
+                  >
+                    ADD TO CART
+                  </button>
+                ) : (
+                  <button
+                    className="defaultAddToCart"
+                    disabled={disabled}
+                    onClick={(e) => addProductToCart(e, product)}
+                    data-type={"inc"}
+                  >
+                    ADD TO CART
+                  </button>
+                )}
+              </div>
+            )}
+
             <div className="productDesc">{parse(description)}</div>
           </div>
         </div>

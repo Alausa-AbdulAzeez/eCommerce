@@ -1,19 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { gql } from "apollo-boost";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../redux/cartSlice";
+import { addToCart, removeFromCart } from "../../redux/cartSlice";
 import Variation from "../variation/Variation";
 
 const GetProducts = () => {
+  const [clickedProduct, setClickedProduct] = useState(null);
+  const [varBtnDisabled, setVarBtnDisabled] = useState(false);
   const variationRef = useRef();
 
   const count = useSelector((state) => {
     return state.category.value;
   });
   const cart = useSelector((state) => {
-    return console.log(state.cart.value);
+    return state.cart.value;
   });
 
   const handleOutOfStock = (product, e) => {
@@ -31,11 +33,25 @@ const GetProducts = () => {
         variationRef.current.firstChild.classList.add("show");
         document.body.style.overflowY = "hidden";
       } else {
-        dispatch(addToCart(product));
+        console.log(e);
+        if (e.target.dataset.type === "inc") {
+          dispatch(addToCart(product));
+        }
+        if (e.target.dataset.type === "dec") {
+          dispatch(removeFromCart(product));
+        }
       }
     } else {
       e.preventDefault();
     }
+  };
+
+  const handleClickedProduct = (product) => {
+    setClickedProduct(product);
+    setTimeout(() => {
+      setVarBtnDisabled(false);
+    }, 1500);
+    setVarBtnDisabled(true);
   };
 
   const GET_PRODUCTS = gql`
@@ -87,12 +103,49 @@ const GetProducts = () => {
                 <div className="categoryName">{name}</div>
                 <div className="categoryPrice">${prices[0].amount}</div>
               </div>
-              <span
-                className="itemIconContainer"
-                onClick={(e) => addProductToCart(e, product)}
-              >
-                <img src={require("../../icons/Common.png")} alt="" />
-              </span>
+              {cart.some((cartItem) => cartItem.id === product.id) === true ? (
+                <span
+                  className="setQuantity"
+                  onClick={() => handleClickedProduct(product)}
+                >
+                  <button
+                    className="catAddBtn"
+                    disabled={varBtnDisabled}
+                    onClick={(e) => addProductToCart(e, product)}
+                    data-type={"inc"}
+                  >
+                    +
+                  </button>
+                  <div className="catQuantity">
+                    {varBtnDisabled && clickedProduct === product ? (
+                      <div className="loader"></div>
+                    ) : (
+                      cart.length > 0 &&
+                      cart.filter((itemInCart) => itemInCart.id === product.id)
+                        .length
+                    )}
+                  </div>
+                  <button
+                    className="catReduceBtn"
+                    disabled={varBtnDisabled}
+                    onClick={(e) => addProductToCart(e, product)}
+                    data-type={"dec"}
+                  >
+                    -
+                  </button>
+                </span>
+              ) : (
+                <span
+                  className="itemIconContainer"
+                  onClick={(e) => addProductToCart(e, product)}
+                >
+                  <img
+                    src={require("../../icons/Common.png")}
+                    alt=""
+                    data-type={"inc"}
+                  />
+                </span>
+              )}
             </div>
           </div>
         );

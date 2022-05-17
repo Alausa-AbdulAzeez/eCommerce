@@ -1,3 +1,13 @@
+.varContent {
+  display: flex;
+  flex-direction: column;
+}
+.varItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .variationContainer {
   width: 100%;
   height: 100vh;
@@ -105,19 +115,32 @@
   align-items: center;
   justify-content: center;
   font-family: "Source Sans Pro";
-  height: 24px;
-  width: 24px;
+  height: 30px;
+  width: 30px;
   font-size: 14px;
   font-weight: 400;
   border: 1px solid #1d1f22;
   margin-right: 8px;
+  cursor: pointer;
+}
+.varSelectedAttribute {
+  background-color: #1d1f22;
+  color: white;
+}
+.varSelectedSize,
+.varSelectedTouchIDinkeyboard,
+.varSelectedWithUSB3ports,
+.varSelectedCapacity {
+  color: white;
+  cursor: pointer;
+  background-color: #000;
 }
 .show {
   visibility: visible;
   z-index: 200;
   opacity: 1;
-  /* bottom: 0;
-  top: 0;
-  min-height: 100%; */
   transform: scale(1);
+}
+.varSelectedColor {
+  border: 1px solid #5ece7b;
 }

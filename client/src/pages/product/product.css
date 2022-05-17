@@ -417,12 +417,6 @@
   min-height: 100%;
 }
 
-.variationRemove:disabled,
-.variationAdd:disabled {
-  cursor: not-allowed;
-  background-color: #25d36570;
-}
-
 .variationRemove,
 .variationAdd {
   font-size: 20px;
@@ -434,4 +428,52 @@
   border-radius: 5px;
   color: white;
   cursor: pointer;
+}
+
+.setQuantity {
+  display: flex;
+  justify-content: space-around;
+  width: 100px;
+}
+.setProdQuantity {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.catAddBtn,
+.catQuantity,
+.catReduceBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  border: 1px solid #1d1f22;
+  font-size: 25px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 100;
+}
+
+.catQuantity {
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+}
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #25d366;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  animation: spin 2s linear infinite;
+}
+
+.catAddBtn:disabled,
+.catReduceBtn:disabled {
+  cursor: not-allowed;
+  border: 1px solid #1d1f2254;
 }
