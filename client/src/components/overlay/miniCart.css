@@ -88,7 +88,7 @@
   font-size: 16px;
   color: #1d1f22;
   height: 26px;
-  margin: 8px 0;
+  margin-top: 8px;
   font-weight: 500;
 }
 .miniCartProductSizes {
@@ -108,7 +108,7 @@
   font-family: "Raleway", sans-serif;
   color: #1d1f22;
   height: 16px;
-  margin-bottom: 8px;
+  margin: 8px 0;
   font-weight: 400;
   font-size: 14px;
 }
@@ -126,6 +126,7 @@
 }
 .miniCartAttributesWrapper {
   display: flex;
+  /* margin-bottom: 8px; */
   /* padding: 7px; */
 }
 .miniCartColorText {
@@ -178,19 +179,14 @@
   margin-right: 8px;
   background-color: #fff;
 }
-.miniContentRight {
-  display: flex;
-  width: 153px;
-  height: 100%;
-}
+
 .miniCartImage {
   width: 120px;
-  height: 190px;
+
   display: flex;
   align-items: center;
 }
 .miniCurrentImage {
-  height: 100%;
   width: 100%;
   background-position: center;
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import VarItem from "../variation/VarItem";
 import "./miniCart.css";
 
 const MiniCart = ({ navProperties, setNavProperties }) => {
@@ -7,6 +9,41 @@ const MiniCart = ({ navProperties, setNavProperties }) => {
   const [show, setShow] = useState(clicked);
   const overLayRef = useRef();
   const miniCartRef = useRef();
+
+  const cart = useSelector((state) => {
+    return state.cart.value;
+  });
+
+  const currencySymbol = useSelector((state) => {
+    return state.currency.value.currency;
+  });
+  const baseConverter = useSelector((state) => {
+    return state.currency.value.baseConverter;
+  });
+
+  let pricesArr = [];
+
+  cart.map((cartItem) => {
+    return pricesArr.push(cartItem.prices[0].amount);
+  });
+
+  const initialValue = 0;
+  const sumWithInitial = pricesArr.reduce(
+    (previousValue, currentValue) => previousValue + currentValue,
+    initialValue
+  );
+
+  const uniqueValues = new Set(cart.map((v) => v.idInCart));
+  const uniqueValuesId = new Set(uniqueValues);
+  const uniqueValuesArray = [...uniqueValuesId];
+  const mainArray = [];
+
+  for (let index = 0; index < uniqueValuesArray.length; index++) {
+    const found = cart.find(
+      (item) => uniqueValuesArray[index] === item.idInCart
+    );
+    mainArray.push(found);
+  }
 
   useEffect(() => {
     setShow(clicked);
@@ -38,138 +75,30 @@ const MiniCart = ({ navProperties, setNavProperties }) => {
       ></div>
       <div className="miniCart" ref={miniCartRef}>
         <div className="miniCartTitle">
-          My Bag, <span>3 item(s)</span>
+          My Bag, <span>{cart.length} item(s)</span>
         </div>
         <div className="mainCartContents">
-          <div className="miniCartContent">
-            <div className="miniContentLeft">
-              <div className="miniProductName">NIKE</div>
-              <div className="miniProductName">AIR FORCE 1</div>
-              <div className="miniCartProductPrice">$100</div>
-              <div className="miniAttributeTitle">Size:</div>
-              <div
-                className="miniCartAttributesWrapper"
+          {mainArray.map((cartItem) => {
+            return (
+              <VarItem
+                cartItem={cartItem}
+                varAttributesArray={
+                  cartItem.attributesArray || cartItem.varAttributesArray
+                }
                 key={
                   new Date().valueOf().toString(36) +
                   Math.random().toString(36).substr(2)
                 }
-              >
-                <div className="miniCartProductSize">XL</div>
-                <div className="miniCartProductSize">XL</div>
-                <div className="miniCartProductSize">XL</div>
-                <div className="miniCartProductSize">XL</div>
-              </div>
-              <div className="productColorWrapper">
-                <div className="miniCartColorText">Color:</div>
-                <div className="miniCartColorsContainer">
-                  <div className="miniCartSelectedColorContainer">
-                    <div
-                      className="miniCartProductDisplayColor"
-                      style={{
-                        backgroundColor: `red`,
-                      }}
-                      data-color="color"
-                    ></div>
-                    <div
-                      className="miniCartProductDisplayColor"
-                      style={{
-                        backgroundColor: `red`,
-                      }}
-                      data-color="color"
-                    ></div>
-                    <div
-                      className="miniCartProductDisplayColor"
-                      style={{
-                        backgroundColor: `red`,
-                      }}
-                      data-color="color"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="miniContentRight">
-              <div className="miniVariationSet">
-                <button className="miniVariationAdd">+</button>
-                <div className="miniVariationQuantity">10</div>
-                <button className="miniVariationRemove">-</button>
-              </div>
-              <div className="miniCartImage">
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087"
-                  alt=""
-                  className="miniCurrentImage"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="miniCartContent">
-            <div className="miniContentLeft">
-              <div className="miniProductName">NIKE</div>
-              <div className="miniProductName">AIR FORCE 1</div>
-              <div className="miniCartProductPrice">$100</div>
-              <div className="miniAttributeTitle">Size:</div>
-              <div
-                className="miniCartAttributesWrapper"
-                key={
-                  new Date().valueOf().toString(36) +
-                  Math.random().toString(36).substr(2)
-                }
-              >
-                <div className="miniCartProductSize">XL</div>
-                <div className="miniCartProductSize">XL</div>
-                <div className="miniCartProductSize">XL</div>
-                <div className="miniCartProductSize">XL</div>
-              </div>
-              <div className="productColorWrapper">
-                <div className="miniCartColorText">Color:</div>
-                <div className="miniCartColorsContainer">
-                  <div className="miniCartSelectedColorContainer">
-                    <div
-                      className="miniCartProductDisplayColor"
-                      style={{
-                        backgroundColor: `red`,
-                      }}
-                      data-color="color"
-                    ></div>
-                    <div
-                      className="miniCartProductDisplayColor"
-                      style={{
-                        backgroundColor: `red`,
-                      }}
-                      data-color="color"
-                    ></div>
-                    <div
-                      className="miniCartProductDisplayColor"
-                      style={{
-                        backgroundColor: `red`,
-                      }}
-                      data-color="color"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="miniContentRight">
-              <div className="miniVariationSet">
-                <button className="miniVariationAdd">+</button>
-                <div className="miniVariationQuantity">10</div>
-                <button className="miniVariationRemove">-</button>
-              </div>
-              <div className="miniCartImage">
-                <div className="miniCurrentImage"></div>
-                <img
-                  src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-family-hero?wid=940&amp;hei=1112&amp;fmt=jpeg&amp;qlt=80&amp;.v=1604021663000"
-                  alt=""
-                  className="miniCurrentImg"
-                />
-              </div>
-            </div>
-          </div>
+              />
+            );
+          })}
           <div className="miniCartFooter">
             <div className="miniCartTotal">
               <div className="totalText">Total</div>
-              <div className="totalDigit">$100</div>
+              <div className="totalDigit">
+                {currencySymbol}
+                {(sumWithInitial * baseConverter).toFixed(2)}
+              </div>
             </div>
             <div className="miniCartButtons">
               <Link to={"/cart"} className="viewBag">

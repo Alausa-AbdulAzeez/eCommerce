@@ -18,20 +18,6 @@ const Variation = ({ product }) => {
     return state.cart.value;
   });
 
-  // const uniqueValues = new Set(cart.map((v) => v.idInCart));
-  // const uniqueValuesId = new Set(uniqueValues);
-  // const uniqueValuesArray = [...uniqueValuesId];
-  // const mainArray = [];
-
-  // for (let index = 0; index < uniqueValuesArray.length; index++) {
-  //   const found = cart.find(
-  //     (item) => uniqueValuesArray[index] === item.idInCart
-  //   );
-  //   mainArray.push(found);
-  // }
-  // console.log(mainArray);
-  console.log(cart);
-
   useEffect(() => {
     function checkArr() {
       if (varAttributesArray && varProductAtt) {
@@ -46,7 +32,17 @@ const Variation = ({ product }) => {
     checkArr();
   }, [varAttributesArray, varProductAtt, product]);
 
-  // const { attributes, brand, description, gallery, name, prices, id } = product;
+  const uniqueValues = new Set(cart.map((v) => v.idInCart));
+  const uniqueValuesId = new Set(uniqueValues);
+  const uniqueValuesArray = [...uniqueValuesId];
+  const mainArray = [];
+
+  for (let index = 0; index < uniqueValuesArray.length; index++) {
+    const found = cart.find(
+      (item) => uniqueValuesArray[index] === item.idInCart
+    );
+    mainArray.push(found);
+  }
 
   // Remove attribute
   const removeAttribute = (attributeType) => {
@@ -236,8 +232,8 @@ const Variation = ({ product }) => {
             </div>
           </div>
           <div className="varContent">
-            {cart.map((cartItem) => {
-              return (
+            {mainArray.map((cartItem) => {
+              return cartItem.id === product.id ? (
                 <VarItem
                   cartItem={cartItem}
                   varAttributesArray={
@@ -248,7 +244,7 @@ const Variation = ({ product }) => {
                     Math.random().toString(36).substr(2)
                   }
                 />
-              );
+              ) : null;
             })}
             {/* {cart
               .filter((cartItem) => cartItem.id === product.id)

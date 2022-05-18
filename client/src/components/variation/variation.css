@@ -5,7 +5,7 @@
 .varItem {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .variationContainer {
@@ -143,4 +143,12 @@
 }
 .varSelectedColor {
   border: 1px solid #5ece7b;
+}
+.miniVariationAdd:disabled,
+.miniVariationRemove:disabled {
+  cursor: not-allowed;
+  border: 1px solid #1d1f2254;
+}
+.miniContentRight {
+  display: flex;
 }

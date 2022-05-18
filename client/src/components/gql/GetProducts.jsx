@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { gql } from "apollo-boost";
@@ -9,6 +9,7 @@ import Variation from "../variation/Variation";
 const GetProducts = () => {
   const [clickedProduct, setClickedProduct] = useState(null);
   const [varBtnDisabled, setVarBtnDisabled] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState(null);
   const variationRef = useRef();
 
   const count = useSelector((state) => {
@@ -18,41 +19,14 @@ const GetProducts = () => {
     return state.cart.value;
   });
 
-  const handleOutOfStock = (product, e) => {
-    if (product.inStock.toString() === "false") {
-      e.preventDefault();
-    }
-  };
+  const currencySymbol = useSelector((state) => {
+    return state.currency.value.currency;
+  });
+  const baseConverter = useSelector((state) => {
+    return state.currency.value.baseConverter;
+  });
 
   const dispatch = useDispatch();
-
-  const addProductToCart = (e, product) => {
-    if (product.inStock === true) {
-      if (product.attributes.length > 0) {
-        variationRef.current.firstChild.style.top = `${window.scrollY}px`;
-        variationRef.current.firstChild.classList.add("show");
-        document.body.style.overflowY = "hidden";
-      } else {
-        console.log(e);
-        if (e.target.dataset.type === "inc") {
-          dispatch(addToCart(product));
-        }
-        if (e.target.dataset.type === "dec") {
-          dispatch(removeFromCart(product));
-        }
-      }
-    } else {
-      e.preventDefault();
-    }
-  };
-
-  const handleClickedProduct = (product) => {
-    setClickedProduct(product);
-    setTimeout(() => {
-      setVarBtnDisabled(false);
-    }, 1500);
-    setVarBtnDisabled(true);
-  };
 
   const GET_PRODUCTS = gql`
   query getCategory {
@@ -75,13 +49,54 @@ const GetProducts = () => {
 
   const { loading, error, data } = useQuery(GET_PRODUCTS);
 
+  useEffect(() => {
+    // window.location.reload();
+  }, [currentProduct]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
+
+  const handleOutOfStock = (product, e) => {
+    if (product.inStock.toString() === "false") {
+      e.preventDefault();
+    }
+  };
+
+  const addProductToCart = (e, product) => {
+    setCurrentProduct(product);
+    if (product.inStock === true) {
+      if (product.attributes.length > 0) {
+        if (currentProduct) {
+          variationRef.current.firstChild.style.top = `${window.scrollY}px`;
+          variationRef.current.firstChild.classList.add("show");
+          document.body.style.overflowY = "hidden";
+        }
+      } else {
+        if (e.target.dataset.type === "inc") {
+          dispatch(addToCart(product));
+        }
+        if (e.target.dataset.type === "dec") {
+          dispatch(removeFromCart(product));
+        }
+      }
+    } else {
+      e.preventDefault();
+    }
+  };
+
+  const handleClickedProduct = (product) => {
+    if (product.attributes.length === 0) {
+      setClickedProduct(product);
+      setTimeout(() => {
+        setVarBtnDisabled(false);
+      }, 1500);
+      setVarBtnDisabled(true);
+    }
+  };
 
   return (
     <>
       <div className="varWrapper" ref={variationRef}>
-        <Variation />
+        {currentProduct && <Variation product={currentProduct} />}
       </div>
 
       {data.category.products.map((product) => {
@@ -101,7 +116,10 @@ const GetProducts = () => {
             <div className="categoryItemBottom">
               <div className="catDescContainer">
                 <div className="categoryName">{name}</div>
-                <div className="categoryPrice">${prices[0].amount}</div>
+                <div className="categoryPrice">
+                  {currencySymbol}
+                  {(prices[0].amount * baseConverter).toFixed(2)}
+                </div>
               </div>
               {cart.some((cartItem) => cartItem.id === product.id) === true ? (
                 <span

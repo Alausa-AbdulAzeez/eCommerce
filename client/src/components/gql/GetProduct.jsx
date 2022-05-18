@@ -32,7 +32,13 @@ const GetProduct = () => {
     }
     checkArr();
   }, [varAttributesArray, productAtt]);
-  console.log(productAtt);
+
+  const currencySymbol = useSelector((state) => {
+    return state.currency.value.currency;
+  });
+  const baseConverter = useSelector((state) => {
+    return state.currency.value.baseConverter;
+  });
 
   const GET_PRODUCT = gql`
     query getId {
@@ -103,7 +109,6 @@ const GetProduct = () => {
   };
 
   const selectAttribute = (e, attributeType, attribute, attributes) => {
-    console.log(attributes);
     setVarAttributesArray({
       ...varAttributesArray,
       [attributeType]: attribute,
@@ -130,6 +135,7 @@ const GetProduct = () => {
         idInCart: idInCart,
       };
       if (e.target.dataset.type === "setVar") {
+        console.log(variationRef);
         variationRef.current.firstChild.style.top = `${window.scrollY}px`;
         variationRef.current.firstChild.classList.add("show");
         document.body.style.overflowY = "hidden";
@@ -277,7 +283,10 @@ const GetProduct = () => {
             <div className="productPrice2">
               <div className="productPrice1">PRICE:</div>
             </div>
-            <div className="priceValue">${prices[0].amount}</div>
+            <div className="priceValue">
+              {currencySymbol}
+              {(prices[0].amount * baseConverter).toFixed(2)}
+            </div>
             {cart.some((cartItem) => cartItem.id === id) === true && (
               <span
                 className="setProdQuantity"

@@ -2,11 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import GetCat from "../gql/GetCat";
 import MiniCart from "../overlay/MiniCart";
+import GetCurrencies from "../gql/GetCurrencies";
 import "./navbar.css";
 
 const Navbar = () => {
   const count = useSelector((state) => {
     return state.category.value;
+  });
+  const cart = useSelector((state) => {
+    return state.cart.value;
   });
 
   const cartIconRef = useRef();
@@ -54,18 +58,7 @@ const Navbar = () => {
               <img src={require("../../icons/angle-down.png")} alt="" />
             </div>
             <div className="navRightList">
-              <li className="currencyList">
-                <div className="">$ USD</div>
-              </li>
-              <li className="currencyList">
-                <div className="">$ USD</div>
-              </li>
-              <li className="currencyList">
-                <div className="">$ USD</div>
-              </li>
-              <li className="currencyList">
-                <div className="">USD $</div>
-              </li>
+              <GetCurrencies />
             </div>
           </div>
           <div className="cartIconContainer">
@@ -75,7 +68,7 @@ const Navbar = () => {
               onClick={(e) => showMiniCart(e)}
               ref={cartIconRef}
             />
-            <div className="cartIconBadge">3</div>
+            <div className="cartIconBadge">{cart.length}</div>
           </div>
         </div>
       </div>

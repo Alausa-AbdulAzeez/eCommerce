@@ -1,8 +1,30 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
 
 const VarItem = ({ cartItem, varAttributesArray }) => {
-  const { brand, name, prices, attributes, id } = cartItem;
-  //   console.log(cartItem);
+  const { brand, name, prices, attributes, gallery } = cartItem;
+  console.log(cartItem);
+
+  const cart = useSelector((state) => {
+    return state.cart.value;
+  });
+
+  const currencySymbol = useSelector((state) => {
+    return state.currency.value.currency;
+  });
+  const baseConverter = useSelector((state) => {
+    return state.currency.value.baseConverter;
+  });
+
+  const dispatch = useDispatch();
+
+  const addProductToCart = (e, product) => {
+    if (e.target.dataset.type === "inc") {
+      dispatch(addToCart(product));
+    }
+  };
+
   return (
     <div
       className="varItem"
@@ -13,7 +35,10 @@ const VarItem = ({ cartItem, varAttributesArray }) => {
       <div className="miniContentLeft">
         <div className="miniProductName">{brand}</div>
         <div className="miniProductName">{name}</div>
-        <div className="miniCartProductPrice">${prices[0].amount}</div>
+        <div className="miniCartProductPrice">
+          {currencySymbol}
+          {(prices[0].amount * baseConverter).toFixed(2)}
+        </div>
         {attributes.map((attribute) => {
           const { id, name } = attribute;
           if (id === "Color") {
@@ -143,16 +168,25 @@ const VarItem = ({ cartItem, varAttributesArray }) => {
       </div>
       <div className="miniContentRight">
         <div className="miniVariationSet">
-          <button className="miniVariationAdd">+</button>
-          <div className="miniVariationQuantity">10</div>
-          <button className="miniVariationRemove">-</button>
+          <button
+            className="miniVariationAdd"
+            onClick={(e) => addProductToCart(e, cartItem)}
+            data-type={"inc"}
+          >
+            +
+          </button>
+          <div className="miniVariationQuantity">
+            {cart.length > 0 &&
+              cart.filter(
+                (itemInCart) => itemInCart.idInCart === cartItem.idInCart
+              ).length}
+          </div>
+          <button className="miniVariationRemove" data-type={"inc"}>
+            -
+          </button>
         </div>
         <div className="miniCartImage">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087"
-            alt=""
-            className="miniCurrentImage"
-          />
+          <img src={gallery[0]} alt="" className="miniCurrentImage" />
         </div>
       </div>
     </div>
