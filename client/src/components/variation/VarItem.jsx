@@ -4,7 +4,6 @@ import { addToCart } from "../../redux/cartSlice";
 
 const VarItem = ({ cartItem, varAttributesArray }) => {
   const { brand, name, prices, attributes, gallery } = cartItem;
-  console.log(cartItem);
 
   const cart = useSelector((state) => {
     return state.cart.value;

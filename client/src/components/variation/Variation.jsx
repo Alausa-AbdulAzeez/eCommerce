@@ -104,7 +104,6 @@ const Variation = ({ product }) => {
     };
     dispatch(addToCart(productInCart));
     setVarAdded([...varAdded, productInCart]);
-    console.log(productInCart);
   };
 
   return (
@@ -130,15 +129,15 @@ const Variation = ({ product }) => {
               <div className="varProductName">{product.name}</div>
             </div>
             <div className="varBottomRight">
-              {product.attributes.map((attribute) => {
-                const { id, name } = attribute;
+              {product.attributes.map((attributeSet) => {
+                const { id, name } = attributeSet;
 
                 if (id === "Color") {
                   return (
                     <div className="productColorWrapper" key={id}>
                       <div className="miniCartColorText">Color:</div>
                       <div className="miniCartColorsContainer">
-                        {attribute.items.map((item) => {
+                        {attributeSet.items.map((item) => {
                           const { id, value } = item;
                           if (value === "#FFFFFF") {
                             return (
@@ -204,8 +203,8 @@ const Variation = ({ product }) => {
                         {name}:
                       </div>
                       <div className="varCartAttributesWrapper">
-                        {attribute.items.map((singleAttribute) => {
-                          const { value, id } = singleAttribute;
+                        {attributeSet.items.map((currentAttribute) => {
+                          const { value, id } = currentAttribute;
                           return (
                             <div
                               key={id}

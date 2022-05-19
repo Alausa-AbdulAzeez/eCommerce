@@ -148,10 +148,12 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+  background-color: black;
 }
 
 .chevLeft {
   right: 48px;
+  background-color: #fff;
 }
 
 .chevRight {

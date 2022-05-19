@@ -135,7 +135,6 @@ const GetProduct = () => {
         idInCart: idInCart,
       };
       if (e.target.dataset.type === "setVar") {
-        console.log(variationRef);
         variationRef.current.firstChild.style.top = `${window.scrollY}px`;
         variationRef.current.firstChild.classList.add("show");
         document.body.style.overflowY = "hidden";
