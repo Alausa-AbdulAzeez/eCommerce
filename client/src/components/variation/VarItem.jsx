@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/cartSlice";
+import { addToCart, removeFromCart } from "../../redux/cartSlice";
 
 const VarItem = ({ cartItem, varAttributesArray }) => {
   const { brand, name, prices, attributes, gallery } = cartItem;
@@ -21,6 +21,9 @@ const VarItem = ({ cartItem, varAttributesArray }) => {
   const addProductToCart = (e, product) => {
     if (e.target.dataset.type === "inc") {
       dispatch(addToCart(product));
+    }
+    if (e.target.dataset.type === "dec") {
+      dispatch(removeFromCart(product));
     }
   };
 
@@ -61,7 +64,7 @@ const VarItem = ({ cartItem, varAttributesArray }) => {
                             }
                           >
                             <div
-                              className="miniCartWhiteDisplayColor"
+                              className="miniCartWhiteDisplayColor selectedColor"
                               style={{
                                 backgroundColor: `${value}`,
                               }}
@@ -141,7 +144,7 @@ const VarItem = ({ cartItem, varAttributesArray }) => {
                     ) {
                       return (
                         <div
-                          className={`miniCartProductSize selectedAttribute`}
+                          className={`varCartProductSize selectedAttribute`}
                           key={id}
                         >
                           {value}
@@ -150,7 +153,7 @@ const VarItem = ({ cartItem, varAttributesArray }) => {
                     } else {
                       return (
                         <div
-                          className={`miniCartProductSize`}
+                          className={`varCartProductSize`}
                           key={id}
                           data-set={"false"}
                         >
@@ -180,7 +183,11 @@ const VarItem = ({ cartItem, varAttributesArray }) => {
                 (itemInCart) => itemInCart.idInCart === cartItem.idInCart
               ).length}
           </div>
-          <button className="miniVariationRemove" data-type={"inc"}>
+          <button
+            className="miniVariationRemove"
+            onClick={(e) => addProductToCart(e, cartItem)}
+            data-type={"dec"}
+          >
             -
           </button>
         </div>

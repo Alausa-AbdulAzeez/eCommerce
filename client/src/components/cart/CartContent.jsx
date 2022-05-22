@@ -6,7 +6,6 @@ const CartContent = ({ cartItem }) => {
   const { brand, name, prices, attributes, gallery, varAttributesArray } =
     cartItem;
   const [imgIndex, setImgIndex] = useState(0);
-  const [clickedProduct, setClickedProduct] = useState(null);
 
   const incRef = useRef();
   const decRef = useRef();
@@ -51,15 +50,13 @@ const CartContent = ({ cartItem }) => {
   };
 
   const setIndex = (action, cartItem, e) => {
-    console.log(cartItem);
-    setClickedProduct(cartItem);
     abc(action, cartItem, e);
   };
 
   return (
     <div>
       <div className="mainCartContent">
-        <div className="cartContentLeft">
+        <div className="mainCartContentLeft">
           <div className="cartPproductBrand">{brand}</div>
           <div className="cartPproductTitle">{name}</div>
           <div className="mainCartProductPrice">
@@ -73,19 +70,19 @@ const CartContent = ({ cartItem }) => {
                 return (
                   <div className="productColorWrapper" key={id}>
                     <div className="sizeText">Color:</div>
-                    <div className="colorsContainer">
-                      <div className="selectedColorWrapper">
+                    <div className="cartColorsContainer">
+                      <div className="cartSelectedColorWrapper">
                         {attribute.items.map((item) => {
                           const { id, value } = item;
                           if (varAttributesArray.Color === value) {
                             if (value === "#FFFFFF") {
                               return (
                                 <div
-                                  className="selectedColorContainer"
+                                  className="cartSelectedColorContainer"
                                   key={id}
                                 >
                                   <div
-                                    className="whiteDisplayColor"
+                                    className="cartWhiteDisplayColor"
                                     style={{
                                       backgroundColor: `${value}`,
                                     }}
@@ -96,11 +93,11 @@ const CartContent = ({ cartItem }) => {
                             } else {
                               return (
                                 <div
-                                  className="selectedColorContainer selectedColor"
+                                  className="cartSelectedColorContainer cartSelectedColor"
                                   key={id}
                                 >
                                   <div
-                                    className="productDisplayColor "
+                                    className="cartProductDisplayColor"
                                     style={{
                                       backgroundColor: `${value}`,
                                     }}
@@ -113,11 +110,11 @@ const CartContent = ({ cartItem }) => {
                             if (value === "#FFFFFF") {
                               return (
                                 <div
-                                  className="selectedColorContainer"
+                                  className="cartSelectedColorContainer"
                                   key={id}
                                 >
                                   <div
-                                    className="whiteDisplayColor"
+                                    className="cartWhiteDisplayColor"
                                     style={{
                                       backgroundColor: `${value}`,
                                     }}
@@ -128,11 +125,11 @@ const CartContent = ({ cartItem }) => {
                             } else {
                               return (
                                 <div
-                                  className="selectedColorContainer "
+                                  className="cartSelectedColorContainer "
                                   key={id}
                                 >
                                   <div
-                                    className="productDisplayColor "
+                                    className="cartProductDisplayColor "
                                     style={{
                                       backgroundColor: `${value}`,
                                     }}
@@ -177,8 +174,8 @@ const CartContent = ({ cartItem }) => {
               }
             })}
         </div>
-        <div className="contentRight">
-          <div className="quantitySet">
+        <div className="mainCartContentRight">
+          <div className="mainCartQuantitySet">
             <button
               className="mainCartAdd"
               onClick={(e) => addProductToCart(e, cartItem)}

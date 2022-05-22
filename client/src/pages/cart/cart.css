@@ -57,10 +57,9 @@
   font-weight: lighter;
 }
 
-.cartContentLeft {
+.mainCartContentLeft {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
 }
 
 .mainCartProductPrice {
@@ -85,12 +84,12 @@
   border: 1px solid black;
 }
 
-.contentRight {
+.mainCartContentRight {
   display: flex;
   width: 270px;
 }
 
-.quantitySet {
+.mainCartQuantitySet {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -200,7 +199,6 @@
   height: 32px;
   cursor: pointer;
   margin: 2px;
-  margin-right: 10px;
 }
 .CartColorText {
   margin: 16px 0 8px 0;
@@ -227,7 +225,6 @@
 }
 .cartBtmWrapper {
   margin: 0 100px;
-  /* background-color: #1d1f22; */
   margin-bottom: 100px;
   border-top: 1px solid #e5e5e5;
 }
@@ -278,4 +275,148 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
+}
+.cartColorsContainer {
+  display: flex;
+  margin-bottom: 38px;
+}
+.cartSelectedColor {
+  border: 1px solid #5ece7b;
+}
+.cartSelectedColorWrapper {
+  display: flex;
+  margin-right: 30px;
+}
+.cartSelectedColorContainer {
+  margin-right: 8px;
+}
+.cartWhiteDisplayColor {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  margin: 2px;
+  box-shadow: 0px 0px 1px 0px #686869b9;
+}
+@media only screen and (max-width: 850px) {
+  .cartText {
+    margin-left: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .cartItemWrapper {
+    margin: 0px 25px;
+  }
+
+  .cartItem {
+    padding: 12px 0;
+  }
+  .mainCartContent {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    /* background-color: black; */
+  }
+  .cartPproductBrand {
+    font-family: "Raleway", sans-serif;
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  .cartPproductTitle {
+    font-size: 15px;
+  }
+  .mainCartProductPrice {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 5px 0;
+    color: #1d1f22;
+  }
+  .cartSelectedColorWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 10px;
+  }
+  .cartSelectedColorContainer {
+    margin-bottom: 5px;
+  }
+  .mainCartQuantitySet {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+  }
+
+  .mainCartAdd,
+  .mainCartRemove,
+  .mainCartQuantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #1d1f22;
+    font-size: 30px;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 100;
+  }
+
+  .mainCartQuantity {
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .mainCartImg {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 85%;
+    margin-left: 5px;
+  }
+  .mainCartContentLeft {
+    width: 100%;
+  }
+  .mainCartContentRight {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .cartImgContainer {
+    height: 100%;
+    width: 100%;
+  }
+  .cartBtmWrapper {
+    margin: 0 25px;
+    margin-bottom: 20px;
+  }
+  .cartBottom {
+    height: 90px;
+    padding-top: 20px;
+  }
+
+  .cartBottomRight {
+    font-size: 18px;
+  }
+  .tax,
+  .cartBtmQuantity {
+    font-size: 18px;
+  }
+  .cartBtmTotal {
+    font-size: 18px;
+  }
+
+  .cartBtmBtn {
+    width: 179px;
+  }
+}
+@media (min-width: 601px) and (max-width: 1000px) {
+  .cartItemWrapper {
+    margin: 0px 50px;
+  }
 }

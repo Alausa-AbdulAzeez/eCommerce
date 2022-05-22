@@ -126,21 +126,21 @@ const GetProduct = () => {
 
   const addProductToCart = (e, product) => {
     if (product.attributes.length > 0) {
-      let idInCart =
-        Object.values(varAttributesArray).toString().split(",").join("") +
-        product.id;
-      let productInCart = {
-        ...product,
-        varAttributesArray,
-        idInCart: idInCart,
-      };
+      if (e.target.dataset.type === "addToCart") {
+        let idInCart =
+          Object.values(varAttributesArray).toString().split(",").join("") +
+          product.id;
+        let productInCart = {
+          ...product,
+          varAttributesArray,
+          idInCart: idInCart,
+        };
+        dispatch(addToCart(productInCart));
+      }
       if (e.target.dataset.type === "setVar") {
         variationRef.current.firstChild.style.top = `${window.scrollY}px`;
         variationRef.current.firstChild.classList.add("show");
         document.body.style.overflowY = "hidden";
-      }
-      if (e.target.dataset.type === "inc") {
-        dispatch(addToCart(productInCart));
       }
     } else {
       if (e.target.dataset.type === "inc") {
@@ -280,7 +280,7 @@ const GetProduct = () => {
                 })}
             </div>
             <div className="productPrice2">
-              <div className="productPrice1">PRICE:</div>
+              <div className="productPrice1">Price:</div>
             </div>
             <div className="priceValue">
               {currencySymbol}
@@ -341,7 +341,7 @@ const GetProduct = () => {
                     className="defaultAddToCart"
                     disabled={disabled}
                     onClick={(e) => addProductToCart(e, product)}
-                    data-type={"inc"}
+                    data-type={"addToCart"}
                   >
                     ADD TO CART
                   </button>

@@ -123,18 +123,18 @@ const GetProducts = () => {
               </div>
               {cart.some((cartItem) => cartItem.id === product.id) === true ? (
                 <span
-                  className="setQuantity"
+                  className="mainSetQuantity"
                   onClick={() => handleClickedProduct(product)}
                 >
                   <button
-                    className="catAddBtn"
+                    className="mainCatAddBtn"
                     disabled={varBtnDisabled}
                     onClick={(e) => addProductToCart(e, product)}
                     data-type={"inc"}
                   >
                     +
                   </button>
-                  <div className="catQuantity">
+                  <div className="mainCatQuantity">
                     {varBtnDisabled && clickedProduct === product ? (
                       <div className="loader"></div>
                     ) : (
@@ -144,7 +144,7 @@ const GetProducts = () => {
                     )}
                   </div>
                   <button
-                    className="catReduceBtn"
+                    className="mainCatReduceBtn"
                     disabled={varBtnDisabled}
                     onClick={(e) => addProductToCart(e, product)}
                     data-type={"dec"}

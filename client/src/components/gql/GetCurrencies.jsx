@@ -17,8 +17,6 @@ const GetCurrencies = () => {
   const dispatch = useDispatch();
 
   const selectCurrency = (e) => {
-    console.log(e.target.innerText.split(" ")[0]);
-
     dispatch(setCurrency(`${e.target.innerText.split(" ")[0]}`));
   };
   const { loading, error, data } = useQuery(GET_CAT);

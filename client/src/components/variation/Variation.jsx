@@ -245,43 +245,6 @@ const Variation = ({ product }) => {
                 />
               ) : null;
             })}
-            {/* {cart
-              .filter((cartItem) => cartItem.id === product.id)
-              .map((cartItem) => {
-                let a = new Set();
-                console.log(varAttributesArray);
-                return (
-                  <VarItem
-                    cartItem={cartItem}
-                    varAttributesArray={
-                      cartItem.attributesArray || varAttributesArray
-                    }
-                  />
-                );
-              })} */}
-            {/* {cart.map((cartItem) => {
-              if (cartItem.id === product.id) {
-                console.log(product);
-                return (
-                  <VarItem
-                    cartItem={cartItem}
-                    varAttributesArray={cartItem.attributesArray}
-                  />
-                );
-              }
-            })}
-            {varAdded.length > 0 &&
-              cart.map((cartItem) => {
-                if (cartItem.varAttributesArray === varAttributesArray) {
-                  console.log(cartItem);
-                  return (
-                    <VarItem
-                      cartItem={cartItem}
-                      varAttributesArray={varAttributesArray}
-                    />
-                  );
-                }
-              })} */}
           </div>
         </div>
       </div>

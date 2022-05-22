@@ -12,6 +12,9 @@ const Navbar = () => {
   const cart = useSelector((state) => {
     return state.cart.value;
   });
+  const currencySymbol = useSelector((state) => {
+    return state.currency.value.currency;
+  });
 
   const cartIconRef = useRef();
   const navRef = useRef();
@@ -53,7 +56,7 @@ const Navbar = () => {
         </div>
         <div className="navRight">
           <div className="currency">
-            <div className="symbol">$</div>
+            <div className="symbol">{currencySymbol}</div>
             <div className="angleIcon">
               <img src={require("../../icons/angle-down.png")} alt="" />
             </div>

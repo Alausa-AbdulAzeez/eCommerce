@@ -248,3 +248,57 @@
   height: 50px;
 }
 
+@media only screen and (max-width: 600px) {
+  .navbarContainer {
+    margin: 0px 25px;
+    font-size: 9px;
+  }
+  .navLeft {
+    flex: 1;
+    align-items: center;
+    justify-content: left;
+  }
+  .navLeftList {
+    margin-right: 12px;
+    padding-bottom: 18px;
+    padding-top: 0;
+  }
+  .cartIconContainer img {
+    height: 20px;
+    width: 20px;
+  }
+  .navCenter {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .navCenter img {
+    height: 20px;
+    width: 20px;
+  }
+  .navRight {
+    flex: 1;
+    justify-content: end;
+  }
+  .currency {
+    margin-right: 8px;
+  }
+  .symbol {
+    font-size: medium;
+    margin-right: 4px;
+  }
+  .cartIconBadge {
+    height: 8px;
+    width: 8px;
+  }
+  .navRightList {
+    width: 114px;
+    right: 15px;
+  }
+  .currencyList {
+    font-size: small;
+  }
+}
+

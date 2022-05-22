@@ -15,6 +15,14 @@ export const cartSlice = createSlice({
       if (action.payload.attributes.length === 0) {
         state.value.pop();
       }
+      if (action.payload.attributes.length > 0) {
+        state.value.splice(
+          state.value.findIndex(
+            (item) => item.idInCart === action.payload.idInCart
+          ),
+          1
+        );
+      }
     },
   },
 });

@@ -28,7 +28,7 @@
   width: 35%;
   max-height: 70vh;
   background-color: #fff;
-  padding: 10px;
+  padding: 0px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -37,6 +37,11 @@
 .containerTop {
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 6;
+  padding-top: 10px;
 }
 
 .variationTitle {
@@ -115,9 +120,9 @@
   align-items: center;
   justify-content: center;
   font-family: "Source Sans Pro";
-  height: 30px;
-  width: 30px;
-  font-size: 14px;
+  height: 35px;
+  width: 35px;
+  font-size: 12px;
   font-weight: 400;
   border: 1px solid #1d1f22;
   margin-right: 8px;
@@ -151,4 +156,31 @@
 }
 .miniContentRight {
   display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .variationContentContainer {
+    width: 90%;
+    max-height: 70vh;
+  }
+  .varCartProductSize {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Source Sans Pro";
+    height: 35px;
+    width: 35px;
+    font-size: 12px;
+    font-weight: 400;
+    border: 1px solid #1d1f22;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+  .variationContentContainer {
+    width: 60%;
+    max-height: 70vh;
+  }
 }
